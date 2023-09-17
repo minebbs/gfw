@@ -37,7 +37,7 @@ jobs:
           path: .
 
       - run: |
-          base64 -d gfwlist/gfwlist.txt > gfwlist.txt
+          cat gfwlist/gfwlist.txt | base64 -d > gfwlist.txt
           git add gfwlist.txt
           git commit -m "[$(LANG=C date)] auto update" || exit 0
           [ -n "${{ secrets.READ_ONLY }}" ] && git show && exit 0
