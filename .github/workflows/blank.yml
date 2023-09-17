@@ -32,10 +32,13 @@ jobs:
           repository: gfwlist/gfwlist
           path: gfwlist
 
+      - uses: petronny/git-config-user@master
+        with:
+          path: .
 
       - run: |
-          cat gfwlist/gfwlist.txt | base64 -d > ./gfwlist.txt
-          git add ./gfwlist.txt
+          base64 -d gfwlist/gfwlist.txt > gfwlist.txt
+          git add gfwlist.txt
           git commit -m "[$(LANG=C date)] auto update" || exit 0
           [ -n "${{ secrets.READ_ONLY }}" ] && git show && exit 0
           git push origin master
