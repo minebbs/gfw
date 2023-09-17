@@ -41,5 +41,5 @@ jobs:
           git add gfwlist.txt
           git commit -m "[$(LANG=C date)] auto update" || exit 0
           [ -n "${{ secrets.READ_ONLY }}" ] && git show && exit 0
-          git push origin master
+          git push origin main
         
